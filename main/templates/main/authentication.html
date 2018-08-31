@@ -1,0 +1,42 @@
+{% extends 'main/base_template.html' %}
+{% block title %} {{ title }} - მომწერე.მე {% endblock %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'main/css/auth.css' %}">
+{% endblock %}
+{% block body %}
+	<h1 class="text-center title">
+		{% if 'შესვლა' in title %}
+		<i class="fa fa-user"></i>
+		{% else %}
+		<i class="fa fa-user-plus"></i>
+		{% endif %}
+		&nbsp; {{ title }}
+	</h1>
+	<div class="wrapper center-block">
+		{% if error_message %}
+		<div class="alert alert-danger" role="alert">
+		  <i class="fa fa-exclamation-circle"></i>
+		  <span class="sr-only">Error:</span>
+		  {{ error_message }}
+		</div>
+		{% endif %}
+		<form method="POST" action="">
+			{% csrf_token %}
+			{% for field in form %}
+			<h5 class="field-label"> {{ field.label }} </h5>
+			{{ field }}
+			{% if field.errors %}
+			<small class="error"> {{ field.errors }} </small>
+			{% endif %}
+			{% endfor %}
+			{% if 'შესვლა' in title %}
+			<small><a href=""> დაგავიწყდა პაროლი? </a></small>
+			{% endif %}
+			<button class="main-btn"> {{ title }} </button>
+		</form>
+	</div>
+	{% if 'შესვლა' in title %}
+		<h5 class="text-center"><strong><a href="{% url 'sign_up' %}"> რეგისტრაცია </a></strong></h5>
+	{% endif %}
+{% endblock %}

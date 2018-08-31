@@ -1,0 +1,57 @@
+body {
+	font-family: 'extrasquare_mtavruli';
+}
+
+.wrapper {
+	display: table;
+	background-color: #fff;
+	padding: 2em 1.5em;
+	box-shadow: rgba(114, 182, 234, 0.2) 1px 0 30px;
+	border-radius: 8px;
+}
+
+.field-label {
+	color: rgba(39, 95, 106, 0.85);
+	font-weight: bold;
+}
+
+.main-btn {
+	width: 100%;
+	min-height: 40px;
+	border-radius: 6px;
+	border: 0;
+	background-color: #3BD788;
+	color: white;
+	font-size: 120%;
+	font-weight: bold;
+	transition: 0.3s;
+	margin: 30px 0 0 0;
+	padding: 12px;
+}
+
+.main-btn:hover{
+	background-color: #2fe388;
+}
+
+.title {
+	color: #204e57;
+	font-weight: bold;
+	margin: 50px;
+}
+
+input {
+	width: 100%;
+	font-size: 120%;
+	border: 1px solid #caeaf6;
+	padding: 7px;
+	border-radius: 8px;
+	transition: 0.3s;
+}
+
+.error {
+	color: red;
+}
+
+input:focus {
+	border: 1px solid #3BD788;
+}
