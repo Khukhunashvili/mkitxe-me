@@ -22,7 +22,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="{% url 'index' %}">
       	<i class="fa fa-comments"></i>  მომწერე.მე
       </a>
     </div>
@@ -31,8 +31,8 @@
 
       <ul class="nav navbar-nav navbar-right">
       	{% if not user.is_anonymous %}
-        <li><a href="#">გამარჯობა {{ user }}! </a></li>
-        <li><a href="#"> უპასუხო <span class="counter">{{ not_answered }}</span> </a></li>
+        <li><a href="{% url 'dashboard' %}">გამარჯობა {{ user }}! </a></li>
+        <li><a href="{% url 'questions' %}"> უპასუხო <span class="counter">{{ not_answered }}</span> </a></li>
         <li><a href="{% url 'logout' %}">გასვლა <i class="fa fa-sign-out"></i></a></li>
         {% else %}
         <li><a href="{% url 'login' %}"> <i class="fa fa-sign-in"></i> შესვლა </a></li>

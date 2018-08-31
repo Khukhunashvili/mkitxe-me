@@ -1,0 +1,48 @@
+.message-entry {
+	display: block;
+	margin: 30px auto;
+	width: 75%;
+	min-height: 150px;
+	font-size: 150%;
+	padding: 15px;
+	resize: vertical;
+}
+
+.message-wrapper {
+	margin-top: 60px;
+}
+
+.message {
+	width: 80%;
+	margin: 40px auto;
+	border: 1px gray dotted;
+	min-height: 75px;
+	padding: 10px 30px;
+  overflow: hidden;
+  clear: both;
+}
+
+.title {
+	margin-bottom: 40px;
+}
+
+.answer-entry {
+  width: 100%;
+  min-height: 50px;
+  margin: 0 0 10px 0;
+	font-size: 125%;
+	border: 1px solid #e2e2e2;
+	padding: 7px;
+}
+
+.answer-btn {
+  min-width: 150px;
+  float: right;
+	background-color: #3BD788;
+	color: white;
+	border-radius: 8px;
+	border: 0;
+  margin: 10px 0 5px 0;
+	font-weight: bold;
+	padding: 10px;
+}

@@ -114,3 +114,24 @@ def comment(request, username):
 				to      = user
 			)
 	return redirect(profile, username=username)
+
+@login_required(login_url='/login')
+def answer_questions(request):
+	messages = request.user.message_set.filter(response=None)
+	unanswered = len(messages)
+	data = {
+		'messages'     : messages,
+		'not_answered' : unanswered
+	}
+	return render(request, 'main/question.html', data)
+
+
+@login_required(login_url='/login')
+def answer_by_pk(request, pk):
+	if request.method == 'POST':
+		message = Message.objects.filter(pk=pk).first()
+		message.response = request.POST.get('answer', '')
+		message.save()
+		return redirect(answer_questions)
+	else:
+		return redirect(dashboard)

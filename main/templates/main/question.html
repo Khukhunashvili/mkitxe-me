@@ -1,0 +1,25 @@
+{% extends 'main/base_template.html' %}
+{% block title %} უპასუხო წერილები - მომწერე.მე  {% endblock %}
+{% block head %}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'main/css/questions.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="container message-wrapper">
+  <h2 class="text-center title"> უპასუხო წერილები: </h2>
+  {% for message in messages %}
+  {% if message.response is None %}
+  <div class="message">
+    <h4> {{ message.message }} </h4>
+    <hr>
+    <form method="post" action="{% url 'question_to' message.pk %}">
+      {% csrf_token %}
+      <textarea name="answer" class="answer-entry" placeholder="რა გინდათ რომ უთხრათ?"></textarea>
+      <button class="answer-btn"> პასუხი </button>
+    </form>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endblock %}
