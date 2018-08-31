@@ -1,0 +1,15 @@
+{% extends 'main/base_template.html' %}
+{% block title %} მოხდა შეცდომა! {% endblock %}
+{% block body %}
+
+
+<div class="container">
+{% if username %}
+<h2 class="text-center"> მომხმარებელი სახელით <span style="color: red; font-weight: bold"> {{ username }} </span> არ არსებობს! </h2>
+<h4 class="text-center"> გთხოვთ დარწმუნდეთ სახელის სისწორეში და სცადოთ თავიდან </h4>
+{% else %}
+<h2 class="text-center"> მოხდა გაუთვალისწინებელი შეცდომა! გთხოვთ სცადოთ მოგვიანებით	 </h2>
+{% endif %}
+</div>
+
+{% endblock %}
