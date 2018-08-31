@@ -1,1 +1,21 @@
-<h1> Hello World </h1>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title> მთავარი გვერდი - მომწერე.მე </title>
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'main/css/geo_font.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'main/css/index.css' %}">
+  	<link rel="icon" href="{% static 'favicon(1).ico' %}" type="image/x-icon">
+	</head>
+	<body>
+		<div class="wrapper">
+			<h1> მიიღე კითხვები ანონიმურად </h1>
+			<h3> გაიგე რას ფიქრობს ხალხი შენზე </h3>
+			<form method="get" action="/login">
+				<button> შესვლა... </button>
+			</form>
+		</div>
+	</body>
+</html>
