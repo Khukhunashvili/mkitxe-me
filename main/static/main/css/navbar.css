@@ -1,0 +1,32 @@
+body {
+	font-family: 'extrasquare_mtavruli' !important;
+}
+.navbar-brand {
+	font-size: 175%;
+	font-weight: bold;
+	color: #204e57 !important;
+}
+
+.navbar-default {
+	background-color: white;
+	padding: 10px;
+}
+
+.fa-comments {
+	background: #5433ff; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #5433ff, #20bdff, #a5fecb); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #5433ff, #20bdff, #a5fecb); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.nav.navbar-nav.navbar-right li a {
+	color: #204e57;
+}
+
+.counter {
+	color: white;
+	background-color: red;
+	border-radius: 50%;
+	padding: 1px 5px;
+}

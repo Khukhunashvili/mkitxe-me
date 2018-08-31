@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> {% block title %} {% endblock %} </title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'main/css/lib/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'main/css/geo_font.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'main/css/navbar.css' %}">
+  <link rel="icon" href="{% static 'favicon(1).ico' %}" type="image/x-icon">
+{% block head %} {% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+      	<i class="fa fa-comments"></i>  მომწერე.მე
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+      	{% if not user.is_anonymous %}
+        <li><a href="#">გამარჯობა {{ user }}! </a></li>
+        <li><a href="#"> უპასუხო <span class="counter">{{ not_answered }}</span> </a></li>
+        <li><a href="#">გასვლა <i class="fa fa-sign-out"></i></a></li>
+        {% else %}
+        <li><a href="#"> <i class="fa fa-sign-in"></i> შესვლა </a></li>
+        {% endif %}
+      </ul>
+
+      <form class="navbar-form navbar-right">
+        <div class="form-group">
+          <input id="query_text"type="text" class="form-control" placeholder="მოძებნე მომხმარებელი">
+        </div>
+        <button type="button" id="search" class="btn btn-default"><i class="fa fa-search"></i> ძებნა</button>
+      </form>
+
+    </div>
+  </div>
+</nav>
+{% block body %} {% endblock %}
+
+<script src="{% static 'main/js/lib/jquery.min.js' %}"></script>
+<script src="{% static 'main/js/lib/bootstrap.min.js' %}"></script>
+<script src="{% static 'main/js/search.js' %}"></script>
+</body>
+</html>
