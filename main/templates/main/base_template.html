@@ -33,7 +33,7 @@
       	{% if not user.is_anonymous %}
         <li><a href="#">გამარჯობა {{ user }}! </a></li>
         <li><a href="#"> უპასუხო <span class="counter">{{ not_answered }}</span> </a></li>
-        <li><a href="#">გასვლა <i class="fa fa-sign-out"></i></a></li>
+        <li><a href="{% url 'logout' %}">გასვლა <i class="fa fa-sign-out"></i></a></li>
         {% else %}
         <li><a href="{% url 'login' %}"> <i class="fa fa-sign-in"></i> შესვლა </a></li>
         {% endif %}

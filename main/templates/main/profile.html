@@ -1,0 +1,58 @@
+{% extends 'main/base_template.html' %}
+{% load static %}
+{% block title %}
+  {% if user.username == profile.username %}
+    ჩემი პროფილი - მომწერე.მე
+  {% else %}
+    {{ profile.first_name }} {{ profile.last_name }} - მომწერე.მე
+  {% endif %}
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'main/css/profile.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-xs-4 image-placeholder">
+			{% if profile.image.url %}
+			<img src='{{ profile.image.url }}' class="profile">
+			{% else %}
+			<img src='{% static "main/images/profile_default.png" %}' class="profile">
+			{% endif %}
+		</div>
+		<div class="col-xs-8">
+			<h3> {{ profile.first_name }} {{ profile.last_name }} </h3>
+			<h4> @{{ profile.username }}
+		</div>
+	</div>
+</div>
+
+<div class="container">
+  <form method="POST" action="{% url 'comment' profile.username %}">
+      {% csrf_token %}
+      <textarea name="message" class="message-entry center-block" placeholder="გაუგზავნე {{ profile.first_name }}ს კითხვა ანონიმურად!"></textarea>
+      <button class="main-btn"> გაგზავნა </button>
+  </form>
+</div>
+
+<div class="container message-wrapper">
+  <h2 class="text-center">
+    {% if user.username == profile.username %}
+    ჩემი
+    {% endif %}
+    წერილები:
+  </h2>
+  {% for message in messages %}
+  {% if message.response is not None %}
+  <div class="message">
+    <h5> {{ message.message }} </h5>
+    <hr>
+    <h5 class="answer"> {{ message.response }} </h5>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+.image-placeholder {
+	text-align: right;
+	vertical-align: center;
+	height: 100%;
+}
+
+.profile {
+	width: 50%;
+	border-radius: 50%;
+	max-height: 200px;
+}
+
+.message-entry {
+	display: block;
+	margin: 30px auto;
+	width: 75%;
+	min-height: 150px;
+	font-size: 150%;
+	padding: 15px;
+	resize: vertical;
+}
+
+.main-btn {
+	width: 30%;
+	margin-left: 57.5%;
+	margin-right: 12.5%;
+	background-color: #3BD788;
+	color: white;
+	border-radius: 8px;
+	border: 0;
+	font-size: 115%;
+	font-weight: bold;
+	padding: 15px 0px;
+}
+
+.message-wrapper {
+	margin-top: 60px;
+}
+
+.message {
+	width: 80%;
+	margin: 40px auto;
+	border: 1px gray dotted;
+	min-height: 75px;
+	padding: 10px 30px;
+}
+
+.answer {
+	color: gray;
+}

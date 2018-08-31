@@ -1,19 +1,23 @@
 from django.shortcuts import render, redirect
 from .forms import LoginForm, RegistrationForm
+from .models import Message
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
     # if User is authenticated redirect to dashboard.
 	if request.user.is_authenticated:
-		print('User is authenticated !!')
+		return redirect(dashboard)
 	return render(request, 'main/index.html')
 
 def login(request):
 	# if User is authenticated redirecr to dashboard
 	if request.user.is_authenticated:
-		print('User is authenticated !!')
+		return redirect(dashboard)
 
 	form = LoginForm(request.POST or None)
 	data = {
@@ -30,8 +34,7 @@ def login(request):
 			if user is not None:
 				if user.is_active:
 					auth_login(request, user)
-				 	# TODO: Change this to redirect user to 'Dashboard'
-					return redirect(index)
+					return redirect(dashboard)
 				else:
 					data['error_message'] = 'თქვენი ანგარიში დაბლოკილია !'
 			else:
@@ -64,6 +67,50 @@ def sign_up(request):
 
 			auth_login(request, authenticate(username=username, password=password))
 
-			# TODO: Change this to redirect user to 'Dashboard'
-			return redirect(index)
+			return redirect(dashboard)
 	return render(request, 'main/authentication.html', data)
+
+
+@login_required(login_url='/login')
+def logout(request):
+	auth_logout(request)
+	return redirect(login)
+
+@login_required(login_url='/login')
+def dashboard(request):
+	user = request.user
+	messages = Message.objects.filter(to=user)
+	unanswered = len([message for message in messages if message.response == None])
+	data = {
+		'profile'      : request.user,
+		'messages'     : reversed(messages),
+		'not_answered' : unanswered
+	}
+	return render(request, 'main/profile.html', data)
+
+def profile(request, username):
+	try:
+		unanswered = len(request.user.message_set.filter(response=None))
+	except AttributeError:
+		unanswered = 0
+	data = {
+		'not_answered' : unanswered
+	}
+	try:
+		user = User.objects.filter(username=username)[0]
+		data['profile'] = user
+		data['messages'] = reversed(Message.objects.filter(to=user))
+	except IndexError:
+		data['username'] = username
+		return render(request, 'main/error.html', data)
+
+	return render(request, 'main/profile.html', data)
+
+def comment(request, username):
+	if request.method == 'POST':
+		user = User.objects.filter(username=username)[0]
+		message = Message.objects.create(
+				message = request.POST.get('message', ''),
+				to      = user
+			)
+	return redirect(profile, username=username)
