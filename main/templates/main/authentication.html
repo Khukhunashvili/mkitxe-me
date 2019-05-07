@@ -39,4 +39,10 @@
 	{% if 'შესვლა' in title %}
 		<h5 class="text-center"><strong><a href="{% url 'sign_up' %}"> რეგისტრაცია </a></strong></h5>
 	{% endif %}
+
+	{% if 'შესვლა' in title %}
+	<h5 class="text-center social-title"> ან შედი სოციალური ქსელით </h5>
+	<button class="center-block social-btn"> <i class="fa fa-instagram"></i> Instagram </button>
+	<button class="center-block social-btn"> <i class="fa fa-facebook-square"></i> Facebook </button>
+	{% endif %}
 {% endblock %}
